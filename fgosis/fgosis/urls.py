@@ -13,11 +13,24 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, patterns, include
 from django.contrib import admin
 from course import views 
+from django.conf import settings # New Import
+from django.conf.urls.static import static # New Import
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 	url(r'^course/', views.pdf_doc, name='pdf_doc'),
+	url(r'^accounts/', include('registration.backends.simple.urls')),
+
 ]
+
+
+if settings.DEBUG:
+    urlpatterns += patterns(
+        'django.views.static',
+        (r'^media/(?P<path>.*)',
+        'serve',
+        {'document_root': settings.MEDIA_ROOT}), )
