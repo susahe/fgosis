@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from course import views 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+	url(r'^course/', views.pdf_doc, name='pdf_doc'),
 ]
