@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
 	url(r'^course/', views.pdf_doc, name='pdf_doc'),
 	url(r'^accounts/', include('registration.backends.simple.urls')),
+	url(r'^name/', views.index, name ='index'),
 
 ]
 
